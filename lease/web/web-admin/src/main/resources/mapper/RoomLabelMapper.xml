@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.lease.web.admin.mapper.RoomLabelMapper">
+
+    <select id="selectRoomLabelList" resultType="com.atguigu.lease.model.entity.LabelInfo">
+        select
+            rl.label_id,
+            li.id,
+            li.type,
+            li.name
+        from room_label rl
+        left join label_info li on rl.label_id = li.id and li.type = #{itemType} and li.is_deleted = 0
+        where rl.room_id = #{id} and rl.is_deleted = 0
+    </select>
+</mapper>
